@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Comum
+namespace Comum.Entidades
 {
     public abstract class Entidade
     {
