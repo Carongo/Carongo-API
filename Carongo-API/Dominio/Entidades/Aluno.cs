@@ -7,9 +7,11 @@ namespace Dominio.Entidades
     {
         public string Nome { get; private set; }
         public string Email { get; private set; }
-        public DateTime DataNascimento { get; set; }
-        public string UrlFoto { get; set; }
-        public string CPF { get; set; }
+        public DateTime DataNascimento { get; private set; }
+        public string UrlFoto { get; private set; }
+        public string CPF { get; private set; }
+        public Guid IdTurma { get; private set; }
+        public Turma Turma { get; private set; }
 
         public Aluno(string nome, string email, DateTime dataNascimento, string urlFoto, string cPF)
         {

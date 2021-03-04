@@ -1,5 +1,6 @@
 ﻿using Comum.Entidades;
 using Comum.Enum;
+using System.Collections.Generic;
 
 namespace Dominio.Entidades
 {
@@ -9,6 +10,7 @@ namespace Dominio.Entidades
         public string Email { get; private set; }
         public string Senha { get; private set; }
         public EnTipoUsuario Tipo { get; private set; }
+        public List<UsuarioInstituicao> UsuarioInstituicao { get; }
 
         public Usuario(string nome, string email, string senha, EnTipoUsuario tipo)
         {
