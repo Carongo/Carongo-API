@@ -1,11 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Comum\Comum.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Responses\" />
+    <Folder Include="Commands\Requests\" />
+    <Folder Include="Handlers\Commands\" />
+    <Folder Include="Handlers\Queries\" />
+    <Folder Include="Queries\Requests\" />
+    <Folder Include="Queries\Responses\" />
+    <Folder Include="Repositorios\" />
   </ItemGroup>
 
 </Project>

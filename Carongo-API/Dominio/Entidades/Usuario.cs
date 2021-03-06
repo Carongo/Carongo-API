@@ -1,5 +1,4 @@
 ﻿using Comum.Entidades;
-using Comum.Enum;
 using System.Collections.Generic;
 
 namespace Dominio.Entidades
@@ -9,15 +8,14 @@ namespace Dominio.Entidades
         public string Nome { get; private set; }
         public string Email { get; private set; }
         public string Senha { get; private set; }
-        public EnTipoUsuario Tipo { get; private set; }
-        public List<UsuarioInstituicao> UsuarioInstituicao { get; }
+        public List<UsuarioInstituicao> UsuariosInstituicoes { get; }
 
-        public Usuario(string nome, string email, string senha, EnTipoUsuario tipo)
+        public Usuario(string nome, string email, string senha)
         {
             Nome = nome;
             Email = email;
             Senha = senha;
-            Tipo = tipo;
+            UsuariosInstituicoes = new List<UsuarioInstituicao>();
         }
 
         public void Alterar(string senha, string nome = null, string email = null)

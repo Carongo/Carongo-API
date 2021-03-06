@@ -1,5 +1,6 @@
 ﻿using Comum.Entidades;
 using System;
+using System.Collections.Generic;
 
 namespace Dominio.Entidades
 {
@@ -10,8 +11,7 @@ namespace Dominio.Entidades
         public DateTime DataNascimento { get; private set; }
         public string UrlFoto { get; private set; }
         public string CPF { get; private set; }
-        public Guid IdTurma { get; private set; }
-        public Turma Turma { get; private set; }
+        public List<AlunoTurma> AlunosTurmas { get; }
 
         public Aluno(string nome, string email, DateTime dataNascimento, string urlFoto, string cPF)
         {
@@ -20,6 +20,7 @@ namespace Dominio.Entidades
             DataNascimento = dataNascimento;
             UrlFoto = urlFoto;
             CPF = cPF;
+            AlunosTurmas = new List<AlunoTurma>();
         }
 
         public void Alterar(string nome, string email, DateTime dataNascimento, string urlFoto, string cPF)
