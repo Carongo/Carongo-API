@@ -3,7 +3,7 @@ using SendGrid.Helpers.Mail;
 using System;
 using System.Threading.Tasks;
 
-namespace CodeTur.Comum.Utils
+namespace Comum.Utils
 {
     public static class Email
     {

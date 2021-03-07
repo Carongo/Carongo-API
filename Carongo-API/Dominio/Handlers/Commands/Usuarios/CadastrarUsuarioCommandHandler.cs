@@ -1,4 +1,4 @@
-﻿using CodeTur.Comum.Utils;
+﻿using Comum.Utils;
 using Comum.Commands;
 using Comum.Handlers;
 using Dominio.Commands.UsuarioRequests;

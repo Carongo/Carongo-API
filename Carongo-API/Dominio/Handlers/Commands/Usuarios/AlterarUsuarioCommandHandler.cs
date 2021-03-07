@@ -1,21 +1,21 @@
-﻿using Comum.Utils;
-using Comum.Commands;
+﻿using Comum.Commands;
 using Comum.Handlers;
 using Dominio.Commands.UsuarioRequests;
+using Dominio.Commands.UsuarioResponses;
 using Dominio.Repositorios;
 
 namespace Dominio.Handlers.Commands.Usuarios
 {
-    public class LogarCommandHandler : IHandlerCommand<LogarCommand>
+    public class AlterarUsuarioCommandHandler : IHandlerCommand<AlterarUsuarioCommand>
     {
         private IUsuarioRepositorio Repositorio { get; set; }
 
-        public LogarCommandHandler(IUsuarioRepositorio repositorio)
+        public AlterarUsuarioCommandHandler(IUsuarioRepositorio repositorio)
         {
             Repositorio = repositorio;
         }
 
-        public ICommandResult Handle(LogarCommand command)
+        public ICommandResult Handle(AlterarUsuarioCommand command)
         {
             command.Validar();
             if (!command.IsValid)
@@ -26,10 +26,13 @@ namespace Dominio.Handlers.Commands.Usuarios
             if (usuario == null)
                 return new GenericCommandResult(false, "Não existe nenhum usuário cadastrado com o email informado!", command.Email);
 
-            if (!Senha.Validar(command.Senha, usuario.Senha))
-                return new GenericCommandResult(false, "Senha incorreta!", command.Senha);
+            usuario.Alterar(command.Nome, command.Email, command.Senha);
 
-            return new GenericCommandResult(true, "Logado com sucesso!", usuario);
+            usuario = Repositorio.Alterar(usuario);
+
+            var result = new UsuarioGenericCommandResult(usuario.Id, usuario.DataCriacao, usuario.Nome, usuario.Email);
+
+            return new GenericCommandResult(true, "Usuário alterado com sucesso!", result);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Dominio.Commands.UsuarioRequests;
 using Dominio.Entidades;
 using Dominio.Handlers.Commands.Usuarios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -34,6 +35,13 @@ namespace Api.Controllers
             }
 
             return resultado;
+        }
+
+        [HttpPut("changeuser")]
+        [Authorize]
+        public ICommandResult ChangeUser(AlterarUsuarioCommand command, [FromServices] AlterarUsuarioCommandHandler handler)
+        {
+            return (GenericCommandResult) handler.Handle(command);
         }
 
         private string GerarJSONWebToken(Usuario usuario)

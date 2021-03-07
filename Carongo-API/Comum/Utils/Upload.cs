@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace CodeTur.Comum.Utils
+namespace Comum.Utils
 {
     public static class Upload
     {

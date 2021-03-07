@@ -1,4 +1,4 @@
-﻿namespace CodeTur.Comum.Utils
+﻿namespace Comum.Utils
 {
     public static class Senha
     {

@@ -1,6 +1,7 @@
 ﻿using Dominio.Entidades;
 using Dominio.Repositorios;
 using Infra.Contextos;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,9 @@ namespace Infra.Repositorios
 
         public Usuario Alterar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            Contexto.Entry(usuario).State = EntityState.Modified;
+            Contexto.SaveChanges();
+            return usuario;
         }
 
         public void Deletar(Guid id)
