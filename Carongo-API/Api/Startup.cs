@@ -58,6 +58,7 @@ namespace Api
 
             services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddTransient<CadastrarUsuarioCommandHandler, CadastrarUsuarioCommandHandler>();
+            services.AddTransient<LogarCommandHandler, LogarCommandHandler>();
 
             #endregion
         }

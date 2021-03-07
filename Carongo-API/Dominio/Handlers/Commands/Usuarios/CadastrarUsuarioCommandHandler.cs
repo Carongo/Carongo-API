@@ -12,9 +12,9 @@ namespace Dominio.Handlers.Commands.Usuarios
     {
         private IUsuarioRepositorio Repositorio { get; set; }
 
-        public CadastrarUsuarioCommandHandler(IUsuarioRepositorio _repositorio)
+        public CadastrarUsuarioCommandHandler(IUsuarioRepositorio repositorio)
         {
-            Repositorio = _repositorio;
+            Repositorio = repositorio;
         }
 
         public ICommandResult Handle(CadastrarUsuarioCommand command)
