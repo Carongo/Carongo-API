@@ -9,7 +9,7 @@ namespace Dominio.Repositorios
         List<Usuario> Listar(string nome = null);
         Usuario Buscar(Guid id);
         Usuario Buscar(string email);
-        Usuario Cadastrar(Usuario usuario);
+        Usuario Adicionar(Usuario usuario);
         Usuario Alterar(Usuario usuario);
         void Deletar(Guid id);
     }

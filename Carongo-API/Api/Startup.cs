@@ -1,4 +1,7 @@
+using Dominio.Handlers.Commands.Usuarios;
+using Dominio.Repositorios;
 using Infra.Contextos;
+using Infra.Repositorios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,6 +53,13 @@ namespace Api
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Carongo-b71e507ae8f44b4396530166279942af"))
                     };
                 });
+
+            #region Injeção de dependência Usuario
+
+            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddTransient<CadastrarUsuarioCommandHandler, CadastrarUsuarioCommandHandler>();
+
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

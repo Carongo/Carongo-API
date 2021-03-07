@@ -11,7 +11,6 @@ namespace Infra.Contextos
         public DbSet<UsuarioInstituicao> UsuariosInstituicoes { get; set; }
         public DbSet<Instituicao> Instituicoes { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
-        public DbSet<AlunoTurma> AlunosTurmas { get; set; }
         public DbSet<Turma> Turmas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,7 +19,7 @@ namespace Infra.Contextos
             modelBuilder
                 .Entity<Usuario>()
                 .Property(u => u.Nome)
-                .HasColumnType("VARCHAR(50)")
+                .HasColumnType("VARCHAR(40)")
                 .IsRequired();
 
             modelBuilder
@@ -98,40 +97,26 @@ namespace Infra.Contextos
                 .HasForeignKey(t => t.IdInstituicao);
             #endregion
 
-            #region AlunoTurma
-            modelBuilder
-                .Entity<AlunoTurma>()
-                .HasOne(at => at.Aluno)
-                .WithMany(a => a.AlunosTurmas)
-                .HasForeignKey(at => at.IdAluno);
-
-            modelBuilder
-                .Entity<AlunoTurma>()
-                .HasOne(at => at.Turma)
-                .WithMany(t => t.AlunosTurmas)
-                .HasForeignKey(at => at.IdTurma);
-            #endregion
-
             #region Aluno
             modelBuilder
                 .Entity<Aluno>()
                 .Property(a => a.Nome)
                 .HasColumnType("VARCHAR(50)")
                 .IsRequired();
-            modelBuilder
+            /*modelBuilder
                 .Entity<Aluno>()
                 .HasIndex(a => a.Nome)
-                    .IsUnique();
+                    .IsUnique();*/
 
             modelBuilder
                 .Entity<Aluno>()
                 .Property(a => a.Email)
                 .HasColumnType("VARCHAR(50)")
                 .IsRequired();
-            modelBuilder
+            /*modelBuilder
                 .Entity<Aluno>()
                 .HasIndex(a => a.Email)
-                    .IsUnique();
+                    .IsUnique();*/
 
             modelBuilder
                 .Entity<Aluno>()
@@ -144,20 +129,26 @@ namespace Infra.Contextos
                 .Property(a => a.UrlFoto)
                 .HasColumnType("VARCHAR(8000)")
                 .IsRequired();
-            modelBuilder
+            /*modelBuilder
                 .Entity<Aluno>()
                 .HasIndex(a => a.UrlFoto)
-                    .IsUnique();
+                    .IsUnique();*/
 
             modelBuilder
                 .Entity<Aluno>()
                 .Property(a => a.CPF)
                 .HasColumnType("VARCHAR(11)")
                 .IsRequired();
-            modelBuilder
+            /*modelBuilder
                 .Entity<Aluno>()
                 .HasIndex(a => a.CPF)
-                    .IsUnique();
+                    .IsUnique();*/
+
+            modelBuilder
+                .Entity<Aluno>()
+                .HasOne(a => a.Turma)
+                .WithMany(t => t.Alunos)
+                .HasForeignKey(a => a.IdTurma);
             #endregion
 
             base.OnModelCreating(modelBuilder);

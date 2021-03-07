@@ -1,12 +1,21 @@
 ﻿using Dominio.Entidades;
 using Dominio.Repositorios;
+using Infra.Contextos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Infra.Repositorios
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
+        private CarongoContexto Contexto { get; set; }
+
+        public UsuarioRepositorio(CarongoContexto contexto)
+        {
+            Contexto = contexto;
+        }
+
         public List<Usuario> Listar(string nome = null)
         {
             throw new NotImplementedException();
@@ -19,12 +28,16 @@ namespace Infra.Repositorios
 
         public Usuario Buscar(string email)
         {
-            throw new NotImplementedException();
+            return Contexto
+                .Usuarios
+                .FirstOrDefault(u => u.Email == email);
         }
 
-        public Usuario Cadastrar(Usuario usuario)
+        public Usuario Adicionar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            Contexto.Usuarios.Add(usuario);
+            Contexto.SaveChanges();
+            return usuario;
         }
 
         public Usuario Alterar(Usuario usuario)

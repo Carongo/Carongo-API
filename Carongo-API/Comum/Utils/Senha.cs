@@ -13,20 +13,5 @@ namespace CodeTur.Comum.Utils
         {
             return BCrypt.Net.BCrypt.Verify(senha, hash);
         }
-
-        public static string Gerar()
-        {
-            string caracteres = "abcdefghijklmnopqrstuvwxyz123456789";
-            string senha = "";
-
-            Random random = new Random();
-
-            for(int c = 0; c < 8; c++)
-            {
-                senha += caracteres.Substring(random.Next(0, caracteres.Length -1), 1);
-            }
-
-            return senha;
-        }
     }
 }

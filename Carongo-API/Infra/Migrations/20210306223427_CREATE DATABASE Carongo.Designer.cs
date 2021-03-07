@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(CarongoContexto))]
-    [Migration("20210306143006_CREATE DATABASE Carongo")]
+    [Migration("20210306223427_CREATE DATABASE Carongo")]
     partial class CREATEDATABASECarongo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,9 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
+                    b.Property<Guid>("IdTurma")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
@@ -51,43 +54,9 @@ namespace Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CPF")
-                        .IsUnique();
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("Nome")
-                        .IsUnique();
-
-                    b.HasIndex("UrlFoto")
-                        .IsUnique();
-
-                    b.ToTable("Alunos");
-                });
-
-            modelBuilder.Entity("Dominio.Entidades.AlunoTurma", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IdAluno")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IdTurma")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdAluno");
-
                     b.HasIndex("IdTurma");
 
-                    b.ToTable("AlunosTurmas");
+                    b.ToTable("Alunos");
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Instituicao", b =>
@@ -198,21 +167,13 @@ namespace Infra.Migrations
                     b.ToTable("UsuariosInstituicoes");
                 });
 
-            modelBuilder.Entity("Dominio.Entidades.AlunoTurma", b =>
+            modelBuilder.Entity("Dominio.Entidades.Aluno", b =>
                 {
-                    b.HasOne("Dominio.Entidades.Aluno", "Aluno")
-                        .WithMany("AlunosTurmas")
-                        .HasForeignKey("IdAluno")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Dominio.Entidades.Turma", "Turma")
-                        .WithMany("AlunosTurmas")
+                        .WithMany("Alunos")
                         .HasForeignKey("IdTurma")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Aluno");
 
                     b.Navigation("Turma");
                 });
@@ -247,11 +208,6 @@ namespace Infra.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("Dominio.Entidades.Aluno", b =>
-                {
-                    b.Navigation("AlunosTurmas");
-                });
-
             modelBuilder.Entity("Dominio.Entidades.Instituicao", b =>
                 {
                     b.Navigation("Turmas");
@@ -261,7 +217,7 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Dominio.Entidades.Turma", b =>
                 {
-                    b.Navigation("AlunosTurmas");
+                    b.Navigation("Alunos");
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Usuario", b =>

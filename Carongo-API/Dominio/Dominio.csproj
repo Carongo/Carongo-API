@@ -9,13 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Responses\" />
-    <Folder Include="Commands\Requests\" />
-    <Folder Include="Handlers\Commands\" />
     <Folder Include="Handlers\Queries\" />
     <Folder Include="Queries\Requests\" />
     <Folder Include="Queries\Responses\" />
-    <Folder Include="Repositorios\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="2.0.2" />
   </ItemGroup>
 
 </Project>

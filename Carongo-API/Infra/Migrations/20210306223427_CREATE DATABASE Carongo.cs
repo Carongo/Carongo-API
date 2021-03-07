@@ -8,23 +8,6 @@ namespace Infra.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Alunos",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false),
-                    Email = table.Column<string>(type: "VARCHAR(50)", nullable: false),
-                    DataNascimento = table.Column<DateTime>(type: "DATETIME", nullable: false),
-                    UrlFoto = table.Column<string>(type: "VARCHAR(8000)", nullable: false),
-                    CPF = table.Column<string>(type: "VARCHAR(11)", nullable: false),
-                    DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Alunos", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Instituicoes",
                 columns: table => new
                 {
@@ -102,25 +85,23 @@ namespace Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AlunosTurmas",
+                name: "Alunos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdAluno = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Email = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    DataNascimento = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    UrlFoto = table.Column<string>(type: "VARCHAR(8000)", nullable: false),
+                    CPF = table.Column<string>(type: "VARCHAR(11)", nullable: false),
                     IdTurma = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AlunosTurmas", x => x.Id);
+                    table.PrimaryKey("PK_Alunos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AlunosTurmas_Alunos_IdAluno",
-                        column: x => x.IdAluno,
-                        principalTable: "Alunos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AlunosTurmas_Turmas_IdTurma",
+                        name: "FK_Alunos_Turmas_IdTurma",
                         column: x => x.IdTurma,
                         principalTable: "Turmas",
                         principalColumn: "Id",
@@ -128,37 +109,8 @@ namespace Infra.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alunos_CPF",
+                name: "IX_Alunos_IdTurma",
                 table: "Alunos",
-                column: "CPF",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Alunos_Email",
-                table: "Alunos",
-                column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Alunos_Nome",
-                table: "Alunos",
-                column: "Nome",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Alunos_UrlFoto",
-                table: "Alunos",
-                column: "UrlFoto",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AlunosTurmas_IdAluno",
-                table: "AlunosTurmas",
-                column: "IdAluno");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AlunosTurmas_IdTurma",
-                table: "AlunosTurmas",
                 column: "IdTurma");
 
             migrationBuilder.CreateIndex(
@@ -192,13 +144,10 @@ namespace Infra.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AlunosTurmas");
+                name: "Alunos");
 
             migrationBuilder.DropTable(
                 name: "UsuariosInstituicoes");
-
-            migrationBuilder.DropTable(
-                name: "Alunos");
 
             migrationBuilder.DropTable(
                 name: "Turmas");

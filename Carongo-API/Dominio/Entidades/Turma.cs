@@ -9,12 +9,12 @@ namespace Dominio.Entidades
         public string Nome { get; private set; }
         public Guid IdInstituicao { get; private set; }
         public Instituicao Instituicao { get; private set; }
-        public List<AlunoTurma> AlunosTurmas { get; }
+        public List<Aluno> Alunos { get; }
 
         public Turma(string nome)
         {
             Nome = nome;
-            AlunosTurmas = new List<AlunoTurma>();
+            Alunos = new List<Aluno>();
         }
 
         public void Alterar(string nome)
