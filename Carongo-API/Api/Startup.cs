@@ -60,6 +60,7 @@ namespace Api
             services.AddTransient<CadastrarUsuarioCommandHandler, CadastrarUsuarioCommandHandler>();
             services.AddTransient<LogarCommandHandler, LogarCommandHandler>();
             services.AddTransient<AlterarUsuarioCommandHandler, AlterarUsuarioCommandHandler>();
+            services.AddTransient<AlterarSenhaCommandHandler, AlterarSenhaCommandHandler>();
 
             #endregion
         }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -41,6 +42,15 @@ namespace Api.Controllers
         [Authorize]
         public ICommandResult ChangeUser(AlterarUsuarioCommand command, [FromServices] AlterarUsuarioCommandHandler handler)
         {
+            command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return (GenericCommandResult) handler.Handle(command);
+        }
+
+        [HttpPut("changepassword")]
+        [Authorize]
+        public ICommandResult ChangePassword(AlterarSenhaCommand command, [FromServices] AlterarSenhaCommandHandler handler)
+        {
+            command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult) handler.Handle(command);
         }
 

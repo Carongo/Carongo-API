@@ -24,7 +24,9 @@ namespace Infra.Repositorios
 
         public Usuario Buscar(Guid id)
         {
-            throw new NotImplementedException();
+            return Contexto
+                .Usuarios
+                .Find(id);
         }
 
         public Usuario Buscar(string email)

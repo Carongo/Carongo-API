@@ -18,16 +18,18 @@ namespace Dominio.Entidades
             UsuariosInstituicoes = new List<UsuarioInstituicao>();
         }
 
-        public void Alterar(string nome, string email, string senha)
+        public void Alterar(string nome, string email)
         {
             if (nome != Nome)
                 Nome = nome;
 
             if (email != Email)
                 Email = email;
+        }
 
-            if (!Comum.Utils.Senha.Validar(senha, Senha))
-                Senha = Comum.Utils.Senha.Criptografar(senha);
+        public void AlterarSenha(string senha)
+        {
+            Senha = senha;
         }
     }
 }
