@@ -44,5 +44,12 @@ namespace Api.Controllers
             command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult)handler.Handle(command);
         }
+
+        [HttpPut("adicionar-turma")]
+        [Authorize]
+        public ICommandResult AdicionarTurma(AdicionarTurmaCommand command, [FromServices] AdicionarTurmaCommandHandler handler)
+        {
+            return (GenericCommandResult) handler.Handle(command);
+        }
     }
 }

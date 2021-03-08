@@ -6,7 +6,6 @@ namespace Dominio.Repositorios
 {
     public interface IUsuarioRepositorio
     {
-        List<Usuario> Listar(string nome = null);
         Usuario Buscar(Guid id);
         Usuario Buscar(string email);
         Usuario Adicionar(Usuario usuario);

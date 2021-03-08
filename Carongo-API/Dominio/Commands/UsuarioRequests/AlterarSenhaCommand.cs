@@ -21,8 +21,8 @@ namespace Dominio.Commands.UsuarioRequests
         {
             AddNotifications(new Contract<AlterarSenhaCommand>()
                 .Requires()
-                .IsTrue((SenhaAtual.Length > 5) && (SenhaAtual.Length < 20), "Senha Atual", "Senha atual inválida!")
-                .IsTrue((SenhaNova.Length > 5) && (SenhaNova.Length < 20), "Senha Nova", "A nova senha deve ter de 6 a 20 caracteres!")
+                .IsTrue((SenhaAtual.Length > 4) && (SenhaAtual.Length < 21), "Senha Atual", "Senha atual inválida!")
+                .IsTrue((SenhaNova.Length > 4) && (SenhaNova.Length < 21), "Senha Nova", "A nova senha deve ter de 6 a 20 caracteres!")
             );
         }
     }

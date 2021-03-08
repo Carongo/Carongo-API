@@ -22,9 +22,9 @@ namespace Dominio.Commands.UsuarioRequests
         {
             AddNotifications(new Contract<CadastrarUsuarioCommand>()
                 .Requires()
-                .IsTrue((Nome.Length > 3) && (Nome.Length < 40), "Nome", "O nome deve ter de 3 a 40 caracteres!")
+                .IsTrue((Nome.Length > 2) && (Nome.Length < 41), "Nome", "O nome deve ter de 3 a 40 caracteres!")
                 .IsEmail(Email, "Email", "Email inválido!")
-                .IsTrue((Senha.Length > 5) && (Senha.Length < 20), "Senha", "A senha deve ter de 6 a 20 caracteres!")
+                .IsTrue((Senha.Length > 4) && (Senha.Length < 21), "Senha", "A senha deve ter de 6 a 20 caracteres!")
             );
         }
     }

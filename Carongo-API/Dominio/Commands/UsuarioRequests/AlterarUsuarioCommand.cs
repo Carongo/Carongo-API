@@ -21,7 +21,7 @@ namespace Dominio.Commands.UsuarioRequests
         {
             AddNotifications(new Contract<AlterarUsuarioCommand>()
                 .Requires()
-                .IsTrue((Nome.Length > 3) && (Nome.Length < 40), "Nome", "O nome deve ter de 3 a 40 caracteres!")
+                .IsTrue((Nome.Length > 2) && (Nome.Length < 41), "Nome", "O nome deve ter de 3 a 40 caracteres!")
                 .IsEmail(Email, "Email", "Email inválido!")
             );
         }

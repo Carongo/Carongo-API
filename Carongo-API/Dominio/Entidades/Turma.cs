@@ -11,9 +11,10 @@ namespace Dominio.Entidades
         public Instituicao Instituicao { get; private set; }
         public List<Aluno> Alunos { get; }
 
-        public Turma(string nome)
+        public Turma(string nome, Guid idInstituicao)
         {
             Nome = nome;
+            IdInstituicao = idInstituicao;
             Alunos = new List<Aluno>();
         }
 

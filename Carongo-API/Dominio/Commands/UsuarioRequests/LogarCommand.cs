@@ -20,7 +20,7 @@ namespace Dominio.Commands.UsuarioRequests
             AddNotifications(new Contract<LogarCommand>()
                 .Requires()
                 .IsEmail(Email, "Email", "Email inválido!")
-                .IsTrue((Senha.Length > 5) && (Senha.Length < 20), "Senha", "A senha deve ter de 6 a 20 caracteres!")
+                .IsTrue((Senha.Length > 4) && (Senha.Length < 21), "Senha", "A senha deve ter de 6 a 20 caracteres!")
             );
         }
     }

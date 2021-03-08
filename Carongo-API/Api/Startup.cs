@@ -68,13 +68,20 @@ namespace Api
 
             #endregion
 
-            #region Injeção de depndência Instituição
+            #region Injeção de dependência Instituição
 
             services.AddTransient<IInstituicaoRepositorio, InstituicaoRepositorio>();
             services.AddTransient<CriarInstituicaoCommandHandler, CriarInstituicaoCommandHandler>();
             services.AddTransient<EntrarNaInstituicaoCommandHandler, EntrarNaInstituicaoCommandHandler>();
             services.AddTransient<AdicionarAdministradorCommandHandler, AdicionarAdministradorCommandHandler>();
             services.AddTransient<SairDaInstituicaoCommandHandler, SairDaInstituicaoCommandHandler>();
+            services.AddTransient<AdicionarTurmaCommandHandler, AdicionarTurmaCommandHandler>();
+
+            #endregion
+
+            #region Injeção de dependência Turma
+
+            services.AddTransient<ITurmaRepositorio, TurmaRepositorio>();
 
             #endregion
         }

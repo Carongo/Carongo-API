@@ -17,11 +17,6 @@ namespace Infra.Repositorios
             Contexto = contexto;
         }
 
-        public List<Usuario> Listar(string nome = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public Usuario Buscar(Guid id)
         {
             return Contexto
@@ -40,23 +35,32 @@ namespace Infra.Repositorios
 
         public Usuario Adicionar(Usuario usuario)
         {
-            Contexto.Usuarios.Add(usuario);
-            Contexto.SaveChanges();
+            Contexto
+                .Usuarios
+                .Add(usuario);
+            Contexto
+                .SaveChanges();
             return usuario;
         }
 
         public Usuario Alterar(Usuario usuario)
         {
-            Contexto.Entry(usuario).State = EntityState.Modified;
-            Contexto.SaveChanges();
+            Contexto
+                .Entry(usuario)
+                .State = EntityState.Modified;
+            Contexto
+                .SaveChanges();
             return usuario;
         }
 
         public void Deletar(Guid id)
         {
             var usuario = Buscar(id);
-            Contexto.Usuarios.Remove(usuario);
-            Contexto.SaveChanges();
+            Contexto
+                .Usuarios
+                .Remove(usuario);
+            Contexto
+                .SaveChanges();
         }
     }
 }
