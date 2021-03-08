@@ -62,6 +62,8 @@ namespace Api
             services.AddTransient<AlterarUsuarioCommandHandler, AlterarUsuarioCommandHandler>();
             services.AddTransient<AlterarSenhaCommandHandler, AlterarSenhaCommandHandler>();
             services.AddTransient<SolicitarNovaSenhaCommandHandler, SolicitarNovaSenhaCommandHandler>();
+            services.AddTransient<RedefinirSenhaCommandHandler, RedefinirSenhaCommandHandler>();
+            services.AddTransient<DeletarContaCommandHandler, DeletarContaCommandHandler>();
 
             #endregion
         }

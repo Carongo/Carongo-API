@@ -38,7 +38,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("solicitar-nova-senha")]
-        public ICommandResult SolicitarRedefinicaoDeSenha(SolicitarNovaSenhaCommand command, [FromServices] SolicitarNovaSenhaCommandHandler handler)
+        public ICommandResult SolicitarNovaSenha(SolicitarNovaSenhaCommand command, [FromServices] SolicitarNovaSenhaCommandHandler handler)
         {
             return (GenericCommandResult) handler.Handle(command);
         }
@@ -54,6 +54,20 @@ namespace Api.Controllers
         [HttpPut("alterar-senha")]
         [Authorize]
         public ICommandResult AlterarSenha(AlterarSenhaCommand command, [FromServices] AlterarSenhaCommandHandler handler)
+        {
+            command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return (GenericCommandResult) handler.Handle(command);
+        }
+
+        [HttpPut("redefinir-senha")]
+        public ICommandResult RedefinirSenha(RedefinirSenhaCommand command, [FromServices] RedefinirSenhaCommandHandler handler)
+        {
+            return (GenericCommandResult)handler.Handle(command);
+        }
+
+        [HttpPut("deletar-conta")]
+        [Authorize]
+        public ICommandResult DeletarConta(DeletarContaCommand command, [FromServices] DeletarContaCommandHandler handler)
         {
             command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult) handler.Handle(command);
