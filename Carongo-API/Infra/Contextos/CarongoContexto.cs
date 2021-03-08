@@ -75,7 +75,7 @@ namespace Infra.Contextos
             modelBuilder
                 .Entity<Instituicao>()
                 .Property(i => i.Codigo)
-                .HasColumnType("VARCHAR(6)")
+                .HasColumnType("VARCHAR(12)")
                 .IsRequired();
             modelBuilder
                 .Entity<Instituicao>()
@@ -87,7 +87,7 @@ namespace Infra.Contextos
             modelBuilder
                 .Entity<Turma>()
                 .Property(t => t.Nome)
-                .HasColumnType("VARCHAR(50)")
+                .HasColumnType("VARCHAR(30)")
                 .IsRequired();
 
             modelBuilder
@@ -101,7 +101,7 @@ namespace Infra.Contextos
             modelBuilder
                 .Entity<Aluno>()
                 .Property(a => a.Nome)
-                .HasColumnType("VARCHAR(50)")
+                .HasColumnType("VARCHAR(40)")
                 .IsRequired();
             /*modelBuilder
                 .Entity<Aluno>()

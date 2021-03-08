@@ -1,3 +1,4 @@
+using Dominio.Handlers.Commands.Instituicoes;
 using Dominio.Handlers.Commands.Usuarios;
 using Dominio.Repositorios;
 using Infra.Contextos;
@@ -64,6 +65,13 @@ namespace Api
             services.AddTransient<SolicitarNovaSenhaCommandHandler, SolicitarNovaSenhaCommandHandler>();
             services.AddTransient<RedefinirSenhaCommandHandler, RedefinirSenhaCommandHandler>();
             services.AddTransient<DeletarContaCommandHandler, DeletarContaCommandHandler>();
+
+            #endregion
+
+            #region Injeção de depndência Instituição
+
+            services.AddTransient<IInstituicaoRepositorio, InstituicaoRepositorio>();
+            services.AddTransient<CriarInstituicaoCommandHandler, CriarInstituicaoCommandHandler>();
 
             #endregion
         }

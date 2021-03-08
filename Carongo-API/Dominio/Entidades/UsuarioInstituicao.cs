@@ -17,10 +17,10 @@ namespace Dominio.Entidades
 
         }
 
-        public UsuarioInstituicao(Usuario usuario, Instituicao instituicao, EnTipoUsuario tipo)
+        public UsuarioInstituicao(Guid idUsuario, Guid idInstituicao, EnTipoUsuario tipo)
         {
-            Usuario = usuario;
-            Instituicao = instituicao;
+            IdUsuario = idUsuario;
+            IdInstituicao = idInstituicao;
             Tipo = tipo;
         }
     }

@@ -22,7 +22,7 @@ namespace Dominio.Commands.InstituicaoRequests
         {
             AddNotifications(new Contract<CriarInstituicaoCommand>()
                 .Requires()
-                .IsTrue((Nome.Length > 5) && (Nome.Length < 40), "Nome", "O nome da instituição deve ter de 5 à 40 caracteres!")
+                .IsTrue((Nome.Length > 3) && (Nome.Length < 40), "Nome", "O nome da instituição deve ter de 3 à 40 caracteres!")
                 .IsTrue((Descricao.Length > 5) && (Descricao.Length < 200), "Descricao", "A descrição da instituição deve ter de 5 à 200 caracteres!")
             );
         }
