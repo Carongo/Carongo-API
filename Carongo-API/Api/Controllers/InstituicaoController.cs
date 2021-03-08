@@ -36,5 +36,13 @@ namespace Api.Controllers
             command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult)handler.Handle(command);
         }
+
+        [HttpPut("sair-da-instituicao")]
+        [Authorize]
+        public ICommandResult SairDaInstituicao(SairDaInstituicaoCommand command, [FromServices] SairDaInstituicaoCommandHandler handler)
+        {
+            command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return (GenericCommandResult)handler.Handle(command);
+        }
     }
 }

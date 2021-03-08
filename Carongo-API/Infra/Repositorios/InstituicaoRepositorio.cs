@@ -70,5 +70,12 @@ namespace Infra.Repositorios
             Contexto.Entry(usuarioInstituicao).State = EntityState.Modified;
             Contexto.SaveChanges();
         }
+
+        public void DeletarUsuario(Guid id)
+        {
+            var usuarioInstituicao = Contexto.UsuariosInstituicoes.Find(id);
+            Contexto.UsuariosInstituicoes.Remove(usuarioInstituicao);
+            Contexto.SaveChanges();
+        }
     }
 }
