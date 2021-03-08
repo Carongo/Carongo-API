@@ -6,7 +6,7 @@ namespace Comum.Utils
 {
     public static class Upload
     {
-        public static string Local(/*IFormFile file*/)
+        public static string Imagem(/*IFormFile file*/)
         {
             /*var nomeArquivo = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
 

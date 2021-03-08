@@ -11,10 +11,11 @@ namespace Dominio.Entidades
         public List<Turma> Turmas { get; }
         public List<UsuarioInstituicao> UsuariosInstituicoes { get; }
 
-        public Instituicao(string nome, string descricao)
+        public Instituicao(string nome, string descricao, string codigo)
         {
             Nome = nome;
             Descricao = descricao;
+            Codigo = codigo;
             Turmas = new List<Turma>();
             UsuariosInstituicoes = new List<UsuarioInstituicao>();
         }

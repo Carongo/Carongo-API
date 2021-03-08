@@ -63,19 +63,19 @@ namespace Infra.Contextos
             modelBuilder
                 .Entity<Instituicao>()
                 .Property(i => i.Nome)
-                .HasColumnType("VARCHAR(50)")
+                .HasColumnType("VARCHAR(40)")
                 .IsRequired();
 
             modelBuilder
                 .Entity<Instituicao>()
                 .Property(i => i.Descricao)
-                .HasColumnType("VARCHAR(250)")
+                .HasColumnType("VARCHAR(200)")
                 .IsRequired();
 
             modelBuilder
                 .Entity<Instituicao>()
                 .Property(i => i.Codigo)
-                .HasColumnType("VARCHAR(12)")
+                .HasColumnType("VARCHAR(6)")
                 .IsRequired();
             modelBuilder
                 .Entity<Instituicao>()

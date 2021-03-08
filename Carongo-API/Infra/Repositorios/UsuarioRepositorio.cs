@@ -52,7 +52,9 @@ namespace Infra.Repositorios
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            var usuario = Buscar(id);
+            Contexto.Usuarios.Remove(usuario);
+            Contexto.SaveChanges();
         }
     }
 }
