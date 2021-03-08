@@ -23,5 +23,10 @@ namespace Dominio.Entidades
             IdInstituicao = idInstituicao;
             Tipo = tipo;
         }
+
+        public void AlterarTipo(EnTipoUsuario tipo)
+        {
+            Tipo = tipo;
+        }
     }
 }

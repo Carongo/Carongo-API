@@ -28,5 +28,13 @@ namespace Api.Controllers
             command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult) handler.Handle(command);
         }
+
+        [HttpPut("adicionar-administrador")]
+        [Authorize]
+        public ICommandResult AdicionarAdministrador(AdicionarAdministradorCommand command, [FromServices] AdicionarAdministradorCommandHandler handler)
+        {
+            command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return (GenericCommandResult)handler.Handle(command);
+        }
     }
 }

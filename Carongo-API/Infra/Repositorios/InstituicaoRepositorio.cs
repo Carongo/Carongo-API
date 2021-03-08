@@ -64,5 +64,11 @@ namespace Infra.Repositorios
             Contexto.UsuariosInstituicoes.Add(usuarioInstituicao);
             Contexto.SaveChanges();
         }
+
+        public void AlterarUsuario(UsuarioInstituicao usuarioInstituicao)
+        {
+            Contexto.Entry(usuarioInstituicao).State = EntityState.Modified;
+            Contexto.SaveChanges();
+        }
     }
 }
