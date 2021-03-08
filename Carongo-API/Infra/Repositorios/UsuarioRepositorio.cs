@@ -26,13 +26,15 @@ namespace Infra.Repositorios
         {
             return Contexto
                 .Usuarios
-                .Find(id);
+                .Include(i => i.UsuariosInstituicoes)
+                .FirstOrDefault(i => i.Id == id);
         }
 
         public Usuario Buscar(string email)
         {
             return Contexto
                 .Usuarios
+                .Include(i => i.UsuariosInstituicoes)
                 .FirstOrDefault(u => u.Email == email);
         }
 

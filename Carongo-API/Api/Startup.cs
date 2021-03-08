@@ -72,6 +72,7 @@ namespace Api
 
             services.AddTransient<IInstituicaoRepositorio, InstituicaoRepositorio>();
             services.AddTransient<CriarInstituicaoCommandHandler, CriarInstituicaoCommandHandler>();
+            services.AddTransient<EntrarNaInstituicaoCommandHandler, EntrarNaInstituicaoCommandHandler>();
 
             #endregion
         }

@@ -10,6 +10,7 @@ namespace Dominio.Repositorios
         Instituicao Buscar(Guid id);
         Instituicao Buscar(string codigo);
         Instituicao Adicionar(Instituicao instituicao);
+        void AdicionarUsuario(UsuarioInstituicao usuarioInstituicao);
         Instituicao Alterar(Instituicao instituicao);
         void Deletar(Guid id);
     }

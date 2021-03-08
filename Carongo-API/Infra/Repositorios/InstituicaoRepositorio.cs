@@ -26,13 +26,15 @@ namespace Infra.Repositorios
         {
             return Contexto
                 .Instituicoes
-                .Find(id);
+                .Include(i => i.UsuariosInstituicoes)
+                .FirstOrDefault(i => i.Id == id);
         }
 
         public Instituicao Buscar(string codigo)
         {
             return Contexto
                 .Instituicoes
+                .Include(i => i.UsuariosInstituicoes)
                 .FirstOrDefault(i => i.Codigo == codigo);
         }
 
@@ -54,6 +56,12 @@ namespace Infra.Repositorios
         {
             var instituicao = Buscar(id);
             Contexto.Instituicoes.Remove(instituicao);
+            Contexto.SaveChanges();
+        }
+
+        public void AdicionarUsuario(UsuarioInstituicao usuarioInstituicao)
+        {
+            Contexto.UsuariosInstituicoes.Add(usuarioInstituicao);
             Contexto.SaveChanges();
         }
     }

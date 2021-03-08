@@ -20,5 +20,13 @@ namespace Api.Controllers
             command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult) handler.Handle(command);
         }
+
+        [HttpPut("entrar-na-instituicao")]
+        [Authorize]
+        public ICommandResult EntrarNaInstituicao(EntrarNaInstituicaoCommand command, [FromServices] EntrarNaInstituicaoCommandHandler handler)
+        {
+            command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return (GenericCommandResult) handler.Handle(command);
+        }
     }
 }
