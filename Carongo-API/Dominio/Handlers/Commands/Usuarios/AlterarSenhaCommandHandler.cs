@@ -32,7 +32,7 @@ namespace Dominio.Handlers.Commands.Usuarios
 
             Repositorio.Alterar(usuario);
 
-            return new GenericCommandResult(false, "Senha alterada com sucesso!", null);
+            return new GenericCommandResult(true, "Senha alterada com sucesso!", null);
         }
     }
 }

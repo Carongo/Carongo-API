@@ -1,36 +1,35 @@
 ﻿using Comum.Commands;
+using Comum.Utils;
 using Dominio.Commands.UsuarioRequests;
 using Dominio.Entidades;
 using Dominio.Handlers.Commands.Usuarios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 
 namespace Api.Controllers
 {
-    [Route("account")]
+    [Route("conta")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        [HttpPost("signup")]
-        public ICommandResult SignUp(CadastrarUsuarioCommand command, [FromServices] CadastrarUsuarioCommandHandler handler)
+        [HttpPost("cadastrar-se")]
+        public ICommandResult Cadastrar(CadastrarUsuarioCommand command, [FromServices] CadastrarUsuarioCommandHandler handler)
         {
             return (GenericCommandResult) handler.Handle(command);
         }
 
-        [HttpPost("signin")]
-        public ICommandResult SignIn(LogarCommand command, [FromServices] LogarCommandHandler handler)
+        [HttpPost("entrar")]
+        public ICommandResult Entrar(LogarCommand command, [FromServices] LogarCommandHandler handler)
         {
             var resultado = (GenericCommandResult) handler.Handle(command);
 
             if (resultado.Sucesso)
             {
-                var token = GerarJSONWebToken((Usuario) resultado.Dados);
+                var usuario = (Usuario) resultado.Dados;
+                var token = JWT.Gerar(usuario.Nome, usuario.Email, usuario.Id, 120);
 
                 return new GenericCommandResult(resultado.Sucesso, resultado.Mensagem, token);
             }
@@ -38,43 +37,26 @@ namespace Api.Controllers
             return resultado;
         }
 
-        [HttpPut("changeuser")]
+        [HttpPost("solicitar-nova-senha")]
+        public ICommandResult SolicitarRedefinicaoDeSenha(SolicitarNovaSenhaCommand command, [FromServices] SolicitarNovaSenhaCommandHandler handler)
+        {
+            return (GenericCommandResult) handler.Handle(command);
+        }
+
+        [HttpPut("alterar-usuario")]
         [Authorize]
-        public ICommandResult ChangeUser(AlterarUsuarioCommand command, [FromServices] AlterarUsuarioCommandHandler handler)
+        public ICommandResult AlterarUsuario(AlterarUsuarioCommand command, [FromServices] AlterarUsuarioCommandHandler handler)
         {
             command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult) handler.Handle(command);
         }
 
-        [HttpPut("changepassword")]
+        [HttpPut("alterar-senha")]
         [Authorize]
-        public ICommandResult ChangePassword(AlterarSenhaCommand command, [FromServices] AlterarSenhaCommandHandler handler)
+        public ICommandResult AlterarSenha(AlterarSenhaCommand command, [FromServices] AlterarSenhaCommandHandler handler)
         {
             command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericCommandResult) handler.Handle(command);
-        }
-
-        private string GerarJSONWebToken(Usuario usuario)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Carongo-b71e507ae8f44b4396530166279942af"));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[] {
-                new Claim("nome", usuario.Nome),
-                new Claim("email", usuario.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, usuario.Id.ToString())
-            };
-
-            var token = new JwtSecurityToken
-                (
-                    "Carongo",
-                    "Carongo",
-                    claims,
-                    expires: DateTime.Now.AddMinutes(120),
-                    signingCredentials: credentials
-                );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
