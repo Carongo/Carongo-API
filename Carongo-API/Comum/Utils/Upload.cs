@@ -6,15 +6,15 @@ namespace Comum.Utils
 {
     public static class Upload
     {
-        public static string Imagem(IFormFile file)
+        public static string Imagem(IFormFile imagem)
         {
-            var nomeArquivo = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
+            var nomeArquivo = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imagem.FileName);
 
             var caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Uploads\Imagens", nomeArquivo);
 
             using var streamImagem = new FileStream(caminhoArquivo, FileMode.Create);
 
-            file.CopyTo(streamImagem);
+            imagem.CopyTo(streamImagem);
 
             return "http://192.168.1.103:5000/Uploads/Imagens/" + nomeArquivo;
         }
