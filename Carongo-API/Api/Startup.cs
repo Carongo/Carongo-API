@@ -76,6 +76,7 @@ namespace Api
             services.AddTransient<AdicionarAdministradorCommandHandler, AdicionarAdministradorCommandHandler>();
             services.AddTransient<SairDaInstituicaoCommandHandler, SairDaInstituicaoCommandHandler>();
             services.AddTransient<AdicionarTurmaCommandHandler, AdicionarTurmaCommandHandler>();
+            services.AddTransient<ExpulsarColaboradorCommandHandler, ExpulsarColaboradorCommandHandler>();
 
             #endregion
 

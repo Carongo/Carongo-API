@@ -51,5 +51,12 @@ namespace Api.Controllers
         {
             return (GenericCommandResult) handler.Handle(command);
         }
+
+        [HttpDelete("expulsar-colaborador")]
+        [Authorize]
+        public ICommandResult ExpulsarColaborador(ExpulsarColaboradorCommand command, [FromServices] ExpulsarColaboradorCommandHandler handler)
+        {
+            return (GenericCommandResult) handler.Handle(command);
+        }
     }
 }

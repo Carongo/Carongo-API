@@ -1,6 +1,7 @@
 ﻿using Dominio.Entidades;
 using Dominio.Repositorios;
 using Infra.Contextos;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,12 +36,22 @@ namespace Infra.Repositorios
 
         public Turma Alterar(Turma turma)
         {
-            throw new NotImplementedException();
+            Contexto
+                .Entry(turma)
+                .State = EntityState.Modified;
+            Contexto
+                .SaveChanges();
+            return turma;
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            var turma = Buscar(id);
+            Contexto
+                .Turmas
+                .Remove(turma);
+            Contexto
+                .SaveChanges();
         }
     }
 }
