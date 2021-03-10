@@ -17,6 +17,21 @@ namespace Infra.Repositorios
             Contexto = contexto;
         }
 
+        public List<Instituicao> Listar(Guid id, string nome = null)
+        {
+            var instituicoes = Contexto
+                .Instituicoes
+                .Include(i => i.UsuariosInstituicoes)
+                .ToList();
+
+            instituicoes = instituicoes.FindAll(i => i.UsuariosInstituicoes.Any(ui => ui.IdUsuario == id));
+
+            if (nome != null)
+                instituicoes = instituicoes.FindAll(i => i.Nome.Contains(nome));
+
+            return instituicoes;
+        }
+
         public Instituicao Buscar(Guid id)
         {
             return Contexto

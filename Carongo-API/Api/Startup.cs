@@ -1,5 +1,7 @@
 using Dominio.Handlers.Commands.Instituicoes;
+using Dominio.Handlers.Commands.Turmas;
 using Dominio.Handlers.Commands.Usuarios;
+using Dominio.Handlers.Queries.Instituicoes;
 using Dominio.Repositorios;
 using Infra.Contextos;
 using Infra.Repositorios;
@@ -78,11 +80,20 @@ namespace Api
             services.AddTransient<AdicionarTurmaCommandHandler, AdicionarTurmaCommandHandler>();
             services.AddTransient<ExpulsarColaboradorCommandHandler, ExpulsarColaboradorCommandHandler>();
 
+            services.AddTransient<ListarMinhasInstituicoesQueryHandler, ListarMinhasInstituicoesQueryHandler>();
+
             #endregion
 
             #region Injeção de dependência Turma
 
             services.AddTransient<ITurmaRepositorio, TurmaRepositorio>();
+            services.AddTransient<AdicionarAlunoCommandHandler, AdicionarAlunoCommandHandler>();
+
+            #endregion
+
+            #region Injeção de dependência Aluno
+
+            services.AddTransient<IAlunoRepositorio, AlunoRepositorio>();
 
             #endregion
         }

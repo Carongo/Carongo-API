@@ -7,8 +7,6 @@ namespace Dominio.Commands.InstituicaoRequests
     public class DeletarInstituicaoCommand : Notifiable<Notification>, ICommand
     {
         public Guid IdInstituicao { get; set; }
-        public void Validar()
-        {
-        }
+        public void Validar(){}
     }
 }

@@ -6,6 +6,7 @@ namespace Dominio.Repositorios
 {
     public interface IInstituicaoRepositorio
     {
+        List<Instituicao> Listar(Guid idUsuario, string nome = null);
         Instituicao Buscar(Guid id);
         Instituicao Buscar(string codigo);
         Instituicao Adicionar(Instituicao instituicao);

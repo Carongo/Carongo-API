@@ -21,6 +21,8 @@ namespace Infra.Repositorios
         {
             return Contexto
                 .Turmas
+                .AsNoTracking()
+                .Include(t => t.Alunos)
                 .FirstOrDefault(t => t.Id == id);
         }
 

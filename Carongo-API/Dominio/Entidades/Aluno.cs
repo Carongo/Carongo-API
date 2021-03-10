@@ -13,13 +13,14 @@ namespace Dominio.Entidades
         public Guid IdTurma { get; private set; }
         public Turma Turma { get; private set; }
 
-        public Aluno(string nome, string email, DateTime dataNascimento, string urlFoto, string cPF)
+        public Aluno(string nome, string email, DateTime dataNascimento, string urlFoto, string cPF, Guid idTurma)
         {
             Nome = nome;
             Email = email;
             DataNascimento = dataNascimento;
             UrlFoto = urlFoto;
             CPF = cPF;
+            IdTurma = idTurma;
         }
 
         public void Alterar(string nome, string email, DateTime dataNascimento, string urlFoto, string cPF)
