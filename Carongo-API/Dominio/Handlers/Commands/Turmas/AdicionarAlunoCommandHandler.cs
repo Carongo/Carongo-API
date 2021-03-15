@@ -41,7 +41,7 @@ namespace Dominio.Handlers.Commands.Turmas
 
             var resultado = new AlunoGenericCommandResult(aluno.Nome, aluno.Email, aluno.DataNascimento, aluno.UrlFoto, aluno.CPF);
 
-            return new GenericCommandResult(false, "Aluno cadastrado com sucesso!", resultado);
+            return new GenericCommandResult(true, "Aluno cadastrado com sucesso!", resultado);
         }
     }
 }

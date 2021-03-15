@@ -23,17 +23,17 @@ namespace Dominio.Handlers.Queries.Instituicoes
             var resultado = minhasInstituicoes.Select(
                 i =>
                 {
-                    return new ListarMinhasInstituicoesQueryResult(i.Id, i.Nome, i.Descricao.Substring(0, i.Descricao.Length > 20 ? 20 : 19) + "...", i.UsuariosInstituicoes.Find(ui => ui.IdUsuario == query.IdUsuario).Tipo.ToString());
+                    return new ListarMinhasInstituicoesQueryResult(i.Id, i.Nome, i.Descricao.Substring(0, i.Descricao.Length > 50 ? 50 : i.Descricao.Length) + "...", i.UsuariosInstituicoes.Find(ui => ui.IdUsuario == query.IdUsuario).Tipo.ToString());
                 }
             );
 
             if(resultado.Count() > 0)
-                return new GenericQueryResult(true, "Instituições das quais você faz parte!", resultado);
+                return new GenericQueryResult(true, "Instituições das quais você faz parte!", resultado.OrderBy(i => i.Nome));
 
             if (query.Nome != null)
-                return new GenericQueryResult(true, "Nenhuma instituição encontrada!", "Nenhuma instituição encontrada!");
+                return new GenericQueryResult(true, "Nenhuma instituição encontrada!", null);
 
-            return new GenericQueryResult(true, "Você não faz parte de nenhuma instituição!", "Você não faz parte de nenhuma instituição! Que tal criar ou entrar em uma?");
+            return new GenericQueryResult(true, "Você não faz parte de nenhuma instituição!", null);
         }
     }
 }

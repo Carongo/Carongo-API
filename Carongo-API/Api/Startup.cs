@@ -1,7 +1,9 @@
+using Dominio.Handlers.Commands.Alunos;
 using Dominio.Handlers.Commands.Instituicoes;
 using Dominio.Handlers.Commands.Turmas;
 using Dominio.Handlers.Commands.Usuarios;
 using Dominio.Handlers.Queries.Instituicoes;
+using Dominio.Handlers.Queries.Usuarios;
 using Dominio.Repositorios;
 using Infra.Contextos;
 using Infra.Repositorios;
@@ -68,6 +70,9 @@ namespace Api
             services.AddTransient<RedefinirSenhaCommandHandler, RedefinirSenhaCommandHandler>();
             services.AddTransient<DeletarContaCommandHandler, DeletarContaCommandHandler>();
 
+            services.AddTransient<ListarMeuPerfilQueryHandler, ListarMeuPerfilQueryHandler>();
+            services.AddTransient<ListarPessoasDaInstituicaoQueryHandler, ListarPessoasDaInstituicaoQueryHandler>();
+
             #endregion
 
             #region Injeção de dependência Instituição
@@ -79,8 +84,11 @@ namespace Api
             services.AddTransient<SairDaInstituicaoCommandHandler, SairDaInstituicaoCommandHandler>();
             services.AddTransient<AdicionarTurmaCommandHandler, AdicionarTurmaCommandHandler>();
             services.AddTransient<ExpulsarColaboradorCommandHandler, ExpulsarColaboradorCommandHandler>();
+            services.AddTransient<AlterarInstituicaoCommandHandler, AlterarInstituicaoCommandHandler>();
+            services.AddTransient<DeletarInstituicaoCommandHandler, DeletarInstituicaoCommandHandler>();
 
             services.AddTransient<ListarMinhasInstituicoesQueryHandler, ListarMinhasInstituicoesQueryHandler>();
+            services.AddTransient<ListarDetalhesDaInstituicaoQueryHandler, ListarDetalhesDaInstituicaoQueryHandler>();
 
             #endregion
 
@@ -88,12 +96,16 @@ namespace Api
 
             services.AddTransient<ITurmaRepositorio, TurmaRepositorio>();
             services.AddTransient<AdicionarAlunoCommandHandler, AdicionarAlunoCommandHandler>();
+            services.AddTransient<AlterarTurmaCommandHandler, AlterarTurmaCommandHandler>();
+            services.AddTransient<DeletarTurmaCommandHandler, DeletarTurmaCommandHandler>();
 
             #endregion
 
             #region Injeção de dependência Aluno
 
             services.AddTransient<IAlunoRepositorio, AlunoRepositorio>();
+            services.AddTransient<AlterarAlunoCommandHandler, AlterarAlunoCommandHandler>();
+            services.AddTransient<DeletarAlunoCommandHandler, DeletarAlunoCommandHandler>();
 
             #endregion
         }

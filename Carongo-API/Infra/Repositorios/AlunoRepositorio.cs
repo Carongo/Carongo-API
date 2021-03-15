@@ -31,6 +31,7 @@ namespace Infra.Repositorios
         public Aluno Alterar(Aluno aluno)
         {
             Contexto.Entry(aluno).State = EntityState.Modified;
+            Contexto.SaveChanges();
             return aluno;
         }
 

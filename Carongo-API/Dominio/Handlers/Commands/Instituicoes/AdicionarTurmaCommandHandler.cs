@@ -33,7 +33,7 @@ namespace Dominio.Handlers.Commands.Instituicoes
 
             TurmaRepositorio.Adicionar(turma);
 
-            return new GenericCommandResult(false, "Turma cadastrada com sucesso!", command.Nome);
+            return new GenericCommandResult(true, "Turma cadastrada com sucesso!", command.Nome);
         }
     }
 }

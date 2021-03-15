@@ -37,7 +37,9 @@ namespace Infra.Repositorios
             return Contexto
                 .Instituicoes
                 .Include(i => i.UsuariosInstituicoes)
+                .ThenInclude(ui => ui.Usuario)
                 .Include(i => i.Turmas)
+                .ThenInclude(t => t.Alunos)
                 .FirstOrDefault(i => i.Id == id);
         }
 

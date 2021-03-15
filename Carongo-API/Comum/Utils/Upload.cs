@@ -16,7 +16,7 @@ namespace Comum.Utils
 
             imagem.CopyTo(streamImagem);
 
-            return "http://192.168.1.103:5000/Uploads/Imagens/" + nomeArquivo;
+            return "http://localhost:5000/Uploads/Imagens/" + nomeArquivo;
         }
     }
 }

@@ -26,6 +26,26 @@ namespace Api.Controllers
             return (GenericQueryResult) handler.Handle(query);
         }
 
+        [HttpGet("listar-detalhes-da-instituicao/{idInstituicao}/nome/{nome?}")]
+        [HttpGet("listar-detalhes-da-instituicao/{idInstituicao}/urlimagem/{urlImagem?}")]
+        [Authorize]
+        public IQueryResult ListarDetalhesDaInstituicao([FromServices] ListarDetalhesDaInstituicaoQueryHandler handler, Guid idInstituicao, string nome = null, string urlImagem = null)
+        {
+            urlImagem = urlImagem != null ? urlImagem.Replace("barra", "/").Replace("interrogacao", "?") : null;
+            var query = new ListarDetalhesDaInstituicaoQuery(nome, urlImagem);
+            query.IdInstituicao = idInstituicao;
+            return (GenericQueryResult) handler.Handle(query);
+        }
+
+        [HttpGet("listar-pessoas-da-instituicao/{idInstituicao}")]
+        [Authorize]
+        public IQueryResult ListarPessoasDaInstituicao([FromServices] ListarPessoasDaInstituicaoQueryHandler handler, Guid idInstituicao)
+        {
+            var query = new ListarPessoasDaInstituicaoQuery();
+            query.IdInstituicao = idInstituicao;
+            return (GenericQueryResult) handler.Handle(query);
+        }
+
         [HttpPost("criar-instituicao")]
         [Authorize]
         public ICommandResult CriarInstituicao(CriarInstituicaoCommand command, [FromServices] CriarInstituicaoCommandHandler handler)
@@ -65,9 +85,23 @@ namespace Api.Controllers
             return (GenericCommandResult) handler.Handle(command);
         }
 
+        [HttpPut("alterar-instituicao")]
+        [Authorize]
+        public ICommandResult AlterarInstituicao(AlterarInstituicaoCommand command, [FromServices] AlterarInstituicaoCommandHandler handler)
+        {
+            return (GenericCommandResult) handler.Handle(command);
+        }
+
         [HttpDelete("expulsar-colaborador")]
         [Authorize]
         public ICommandResult ExpulsarColaborador(ExpulsarColaboradorCommand command, [FromServices] ExpulsarColaboradorCommandHandler handler)
+        {
+            return (GenericCommandResult) handler.Handle(command);
+        }
+
+        [HttpDelete("deletar-instituicao")]
+        [Authorize]
+        public ICommandResult DeletarInstituicao(DeletarInstituicaoCommand command, [FromServices] DeletarInstituicaoCommandHandler handler)
         {
             return (GenericCommandResult) handler.Handle(command);
         }

@@ -4,7 +4,7 @@ using Flunt.Notifications;
 using Flunt.Validations;
 using System;
 
-namespace Dominio.Commands.Aluno
+namespace Dominio.Commands.AlunoRequests
 {
     public class AdicionarAlunoCommand : Notifiable<Notification>, ICommand
     {
@@ -16,11 +16,6 @@ namespace Dominio.Commands.Aluno
         public Guid IdTurma { get; private set; }
         public Turma Turma { get; private set; }
 
-        public AdicionarAlunoCommand()
-        {
-
-        }
-
         public AdicionarAlunoCommand(string nome, string email, DateTime dataNascimento, string urlFoto, string cPF)
         {
             Nome = nome;
@@ -29,8 +24,6 @@ namespace Dominio.Commands.Aluno
             UrlFoto = urlFoto;
             CPF = cPF;
         }
-
-        
 
         public void Validar()
         {

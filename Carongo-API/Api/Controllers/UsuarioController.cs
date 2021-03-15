@@ -1,8 +1,11 @@
 ﻿using Comum.Commands;
+using Comum.Queries;
 using Comum.Utils;
 using Dominio.Commands.UsuarioRequests;
 using Dominio.Entidades;
 using Dominio.Handlers.Commands.Usuarios;
+using Dominio.Handlers.Queries.Usuarios;
+using Dominio.Queries.UsuarioRequests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,6 +18,15 @@ namespace Api.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+        [HttpGet("listar-meu-perfil")]
+        [Authorize]
+        public IQueryResult ListarMeuPerfil([FromServices] ListarMeuPerfilQueryHandler handler)
+        {
+            var query = new ListarMeuPerfilQuery();
+            query.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return (GenericQueryResult) handler.Handle(query);
+        }
+
         [HttpPost("cadastrar-se")]
         public ICommandResult Cadastrar(CadastrarUsuarioCommand command, [FromServices] CadastrarUsuarioCommandHandler handler)
         {

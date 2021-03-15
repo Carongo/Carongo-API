@@ -29,7 +29,6 @@ namespace Dominio.Commands.TurmaRequests
                 .IsTrue((Nome.Length > 2) && (Nome.Length < 41), "Nome", "O nome do aluno deve ter de 3 à 40 caracteres!")
                 .IsEmail(Email, "Email", "Email inválido!")
                 .IsNotNullOrEmpty(DataNascimento.ToString(), "DataNascimento", "Data de nascimento inválida!")
-                .IsNotUrl(UrlFoto, "UrlFoto", "Url de imagem do aluno inválida!")
                 .IsTrue(CPF.Length == 11, "CPF", "CPF inválido!")
                 .IsNotNullOrEmpty(IdTurma.ToString(), "IdTurma", "Id da turma inválido!")
             );
