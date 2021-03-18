@@ -27,7 +27,7 @@ namespace Infra.Repositorios
             instituicoes = instituicoes.FindAll(i => i.UsuariosInstituicoes.Any(ui => ui.IdUsuario == id));
 
             if (nome != null)
-                instituicoes = instituicoes.FindAll(i => i.Nome.Contains(nome));
+                instituicoes = instituicoes.FindAll(i => i.Nome.ToLower().Contains(nome));
 
             return instituicoes;
         }

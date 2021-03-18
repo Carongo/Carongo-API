@@ -17,7 +17,8 @@ namespace Dominio.Handlers.Queries.Instituicoes
 
         public IQueryResult Handle(ListarPessoasDaInstituicaoQuery query)
         {
-            var usuariosInstituicoes = Repositorio.Buscar(query.IdInstituicao).UsuariosInstituicoes;
+            var inst = Repositorio.Buscar(query.IdInstituicao);
+	        var usuariosInstituicoes = inst.UsuariosInstituicoes;
 
             var usuarios = usuariosInstituicoes.Select(
                     ui =>
@@ -28,6 +29,7 @@ namespace Dominio.Handlers.Queries.Instituicoes
                             {
                                 Tipo = Comum.Enum.EnTipoUsuario.Colaborador,
                                 Id = ui.Usuario.Id,
+				                IdUsuarioInstituicao = ui.Id,
                                 Nome = ui.Usuario.Nome
                             };
                         }
@@ -37,6 +39,7 @@ namespace Dominio.Handlers.Queries.Instituicoes
                             {
                                 Tipo = Comum.Enum.EnTipoUsuario.Administrador,
                                 Id = ui.Usuario.Id,
+				                IdUsuarioInstituicao = ui.Id,
                                 Nome = ui.Usuario.Nome
                             };
                         }
@@ -45,8 +48,9 @@ namespace Dominio.Handlers.Queries.Instituicoes
 
             var result = new
             {
-                Colaboradores = usuarios.Where(u => u.Tipo == Comum.Enum.EnTipoUsuario.Colaborador),
-                Administradores = usuarios.Where(u => u.Tipo == Comum.Enum.EnTipoUsuario.Administrador)
+		        Codigo = inst.Codigo,
+                Colaboradores = usuarios.Where(u => u.Tipo == Comum.Enum.EnTipoUsuario.Colaborador).OrderBy(c => c.Nome),
+                Administradores = usuarios.Where(u => u.Tipo == Comum.Enum.EnTipoUsuario.Administrador).OrderBy(c => c.Nome)
             };
 
             return new GenericQueryResult(true, "Pessoas da instituição", result);

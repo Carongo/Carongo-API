@@ -2,7 +2,9 @@ using Dominio.Handlers.Commands.Alunos;
 using Dominio.Handlers.Commands.Instituicoes;
 using Dominio.Handlers.Commands.Turmas;
 using Dominio.Handlers.Commands.Usuarios;
+using Dominio.Handlers.Queries.Alunos;
 using Dominio.Handlers.Queries.Instituicoes;
+using Dominio.Handlers.Queries.Turmas;
 using Dominio.Handlers.Queries.Usuarios;
 using Dominio.Repositorios;
 using Infra.Contextos;
@@ -99,6 +101,8 @@ namespace Api
             services.AddTransient<AlterarTurmaCommandHandler, AlterarTurmaCommandHandler>();
             services.AddTransient<DeletarTurmaCommandHandler, DeletarTurmaCommandHandler>();
 
+            services.AddTransient<ListarDetalhesTurmaQueryHandler, ListarDetalhesTurmaQueryHandler>();
+
             #endregion
 
             #region Injeção de dependência Aluno
@@ -106,7 +110,8 @@ namespace Api
             services.AddTransient<IAlunoRepositorio, AlunoRepositorio>();
             services.AddTransient<AlterarAlunoCommandHandler, AlterarAlunoCommandHandler>();
             services.AddTransient<DeletarAlunoCommandHandler, DeletarAlunoCommandHandler>();
-
+            services.AddTransient<ListarAlunoPorIdQueryHandler, ListarAlunoPorIdQueryHandler>();
+            
             #endregion
         }
 

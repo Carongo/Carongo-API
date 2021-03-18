@@ -36,9 +36,9 @@ namespace Dominio.Handlers.Commands.Usuarios
             if (usuario != null)
                 Email.MandarEmail(usuario.Email, $"Olá, {usuario.Nome}! Seja muito bem-vindo(a) ao Carongo!", "<p>No nosso sistema você pode criar ou entrar em instituições, gerenciá-las e, finalmente, criar um carômetro de seus alunos de cada instituição. Estamos sempre trabalhando em atualizações para incluir novas funcionalidades e aumentar a performance do sistema. Aproveite!</p>");
 
-            var resultado = new UsuarioGenericCommandResult(usuario.DataCriacao, usuario.Nome, usuario.Email);
+            var token = JWT.Gerar(usuario.Nome, usuario.Email, usuario.Id, 120);
 
-            return new GenericCommandResult(true, "Usuário cadastrado com sucesso!", resultado);
+            return new GenericCommandResult(true, $"Seja muito bem vindo, {usuario.Nome}!", token);
         }
     }
 }

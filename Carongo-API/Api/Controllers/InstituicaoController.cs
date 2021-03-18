@@ -34,6 +34,7 @@ namespace Api.Controllers
             urlImagem = urlImagem != null ? urlImagem.Replace("barra", "/").Replace("interrogacao", "?") : null;
             var query = new ListarDetalhesDaInstituicaoQuery(nome, urlImagem);
             query.IdInstituicao = idInstituicao;
+            query.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return (GenericQueryResult) handler.Handle(query);
         }
 

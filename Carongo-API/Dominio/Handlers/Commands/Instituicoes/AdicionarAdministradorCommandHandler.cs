@@ -41,7 +41,7 @@ namespace Dominio.Handlers.Commands.Instituicoes
             if (usuarioInstituicao == null)
             {
                 InstituicaoRepositorio.AdicionarUsuario(new UsuarioInstituicao(novoAdministrador.Id, instituicao.Id, EnTipoUsuario.Administrador));
-                return new GenericCommandResult(false, "Administrador adicionado com sucesso!", null);
+                return new GenericCommandResult(true, "Administrador adicionado com sucesso!", null);
             }
             else if (usuarioInstituicao.Tipo == EnTipoUsuario.Administrador)
                 return new GenericCommandResult(false, "O usuário informado já é um administrador da instituição!", command.Email);
@@ -49,7 +49,7 @@ namespace Dominio.Handlers.Commands.Instituicoes
             {
                 usuarioInstituicao.AlterarTipo(EnTipoUsuario.Administrador);
                 InstituicaoRepositorio.AlterarUsuario(usuarioInstituicao);
-                return new GenericCommandResult(false, "Colaborador atualizado para administrador com sucesso!", null);
+                return new GenericCommandResult(true, "Colaborador atualizado para administrador com sucesso!", null);
             }
         }
     }

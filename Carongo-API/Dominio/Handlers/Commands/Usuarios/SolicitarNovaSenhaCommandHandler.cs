@@ -28,7 +28,7 @@ namespace Dominio.Handlers.Commands.Usuarios
 
             string token = JWT.Gerar(usuario.Nome, usuario.Email, usuario.Id, 5);
 
-            string link = "https://carongo.com/esqueci-minha-senha/redefinir-senha/token=" + token;
+            string link = "http://localhost:3000/esqueci-minha-senha/redefinir-senha/" + token;
 
             Email.MandarEmail(usuario.Email, $"Olá, {usuario.Nome}!", $"<p>Você solicitou um link para redefinir sua senha? Se não foi você, apenas ignore este email. Se foi você, clique no botão abaixo para ser redirecionado para uma página onde você poderá redefinir sua senha. O link estará disponível por apenas 5 minutos.</p><br><a href='${link}'><button>Ir!</button></a><a>{link}</a>");
 

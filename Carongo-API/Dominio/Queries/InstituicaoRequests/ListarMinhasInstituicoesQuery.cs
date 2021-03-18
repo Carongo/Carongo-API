@@ -11,7 +11,7 @@ namespace Dominio.Queries.InstituicaoRequests
         public ListarMinhasInstituicoesQuery(string nome = null)
         {
             if(nome!=null)
-                Nome = nome.Trim();
+                Nome = nome.Trim().ToLower();
         }
 
         public void Validar(){}

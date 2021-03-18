@@ -6,6 +6,7 @@ namespace Dominio.Queries.InstituicaoRequests
     public class ListarDetalhesDaInstituicaoQuery : IQuery
     {
         public Guid IdInstituicao { get; set; }
+        public Guid IdUsuario { get; set; }
         public string Nome { get; set; } = null;
         public string UrlImagem { get; set; } = null;
 

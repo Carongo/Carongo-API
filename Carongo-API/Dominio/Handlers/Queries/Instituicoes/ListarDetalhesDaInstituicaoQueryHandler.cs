@@ -48,6 +48,7 @@ namespace Dominio.Handlers.Queries.Instituicoes
                 {
                     var result = new
                     {
+                        Tipo = turmasDaInstituicao[0].Instituicao.UsuariosInstituicoes.Find(ui => ui.IdUsuario == query.IdUsuario).Tipo,
                         Turmas = 
                             turmas.Select(t =>
                             {
@@ -65,9 +66,9 @@ namespace Dominio.Handlers.Queries.Instituicoes
                                                 UrlFoto = a.UrlFoto,
                                                 CPF = a.CPF
                                             };
-                                        })
+                                        }).OrderBy(a => a.NomeAluno)
                                 };
-                            })
+                            }).OrderBy(t => t.NomeTurma)
                         
                     };
 
@@ -98,7 +99,8 @@ namespace Dominio.Handlers.Queries.Instituicoes
                     turmas[0] = turmas.Find(t => t.Alunos.Find(a => a.UrlFoto == alunoUrlFoto) != null);
                     turmas[0].Alunos[0] = turmas[0].Alunos.Find(a => a.UrlFoto == alunoUrlFoto);
 
-                    var result = new { 
+                    var result = new {
+                        Tipo = turmasDaInstituicao[0].Instituicao.UsuariosInstituicoes.Find(ui => ui.IdUsuario == query.IdUsuario).Tipo,
                         Turmas = new[] {
                             new {
                                 IdTurma = turmas[0].Id,
@@ -126,6 +128,7 @@ namespace Dominio.Handlers.Queries.Instituicoes
 
             var resultado = new
             {
+		Tipo = turmasDaInstituicao[0].Instituicao.UsuariosInstituicoes.Find(ui => ui.IdUsuario == query.IdUsuario).Tipo,
                 Turmas =
                     turmasDaInstituicao.Select(t =>
                     {
@@ -144,9 +147,9 @@ namespace Dominio.Handlers.Queries.Instituicoes
                                     UrlFoto = a.UrlFoto,
                                     CPF = a.CPF
                                 };
-                            })
+                            }).OrderBy(a => a.NomeAluno)
                         };
-                    })
+                    }).OrderBy(t => t.NomeTurma)
             };
 
             return new GenericQueryResult(true, "Turmas da instituição e alunos delas!", resultado);

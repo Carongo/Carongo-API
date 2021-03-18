@@ -31,7 +31,7 @@ namespace Dominio.Handlers.Queries.Instituicoes
                 return new GenericQueryResult(true, "Instituições das quais você faz parte!", resultado.OrderBy(i => i.Nome));
 
             if (query.Nome != null)
-                return new GenericQueryResult(true, "Nenhuma instituição encontrada!", null);
+                return new GenericQueryResult(false, "Nenhuma instituição encontrada!", null);
 
             return new GenericQueryResult(true, "Você não faz parte de nenhuma instituição!", null);
         }
