@@ -77,7 +77,7 @@ namespace Api.Controllers
             return (GenericCommandResult)handler.Handle(command);
         }
 
-        [HttpPut("deletar-conta")]
+        [HttpDelete("deletar-conta")]
         [Authorize]
         public ICommandResult DeletarConta(DeletarContaCommand command, [FromServices] DeletarContaCommandHandler handler)
         {
