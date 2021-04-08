@@ -21,8 +21,8 @@ namespace Comum.Utils
 
     public static class Azure
     {
-        const string KEY = "0a4fc16e686e49d78ee4efececeb02fd";
-        const string ENDPOINT = "https://danielmendesdoamaraldf.cognitiveservices.azure.com/";
+        const string KEY = "";
+        const string ENDPOINT = "";
 
         private static IFaceClient Autenticar(string endpoint, string key)
         {
